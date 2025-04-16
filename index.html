@@ -6,8 +6,6 @@
 <title>Conteúdo Exclusivo</title>
 <style>
 
-    /* Faz o iframe do YouTube preencher toda a tela */
-
     #bgvideo {
 
       position: fixed;
@@ -138,22 +136,6 @@
 
     }
 
-    /* Novo estilo para o botão de Vídeo Completo */
-
-    .btn-video {
-
-      background-color: #FF0000;
-
-      color: white;
-
-    }
-
-    .btn-video:hover {
-
-      background-color: #cc0000;
-
-    }
-
     #conteudo {
 
       display: none;
@@ -164,19 +146,8 @@
 </style>
 </head>
 <body>
-<!-- Embed do vídeo do YouTube como fundo -->
-<iframe
-
-    id="bgvideo"
-
-    src="https://www.youtube.com/embed/zeZJveV5gmY?autoplay=1&mute=1&loop=1&controls=0&playsinline=1&modestbranding=1&playlist=zeZJveV5gmY"
-
-    frameborder="0"
-
-    allow="autoplay; fullscreen"
-
-    allowfullscreen>
-</iframe>
+<!-- Container para o vídeo de fundo -->
+<div id="video-container"></div>
 <div class="content-wrapper">
 <h1>Conteúdo Exclusivo</h1>
 <p>Siga nossas redes para liberar o conteúdo:</p>
@@ -209,15 +180,8 @@
 <h2>Aqui está o seu código secreto:</h2>
 <p id="codigoSecreto" style="font-size: 24px; font-weight: bold;"></p>
 </div>
-<!-- Novo botão para ver o vídeo completo com redirecionamento condicional -->
-<button id="btnVideoCompleto" class="btn btn-video" onclick="redirecionarVideo()">
-
-      Ver Vídeo Completo
-</button>
 </div>
 <script>
-
-    // Habilita o botão "Já segui" quando o usuário clica em qualquer uma das redes
 
     function habilitarBotao() {
 
@@ -225,17 +189,11 @@
 
     }
 
-    // Gera o código ou recupera do localStorage se já foi gerado anteriormente
-
     function gerarCodigo() {
-
-      // Verifica se já existe um código salvo no dispositivo
 
       let codigoSalvo = localStorage.getItem("codigoSecreto");
 
       if (!codigoSalvo) {
-
-        // Se não houver, gera um código aleatório entre 1000 e 9999
 
         codigoSalvo = Math.floor(Math.random() * 9000) + 1000;
 
@@ -243,19 +201,13 @@
 
       }
 
-      // Exibe o código na tela
-
       document.getElementById("codigoSecreto").innerText = codigoSalvo;
 
       document.getElementById("conteudo").style.display = "block";
 
-      // Desabilita o botão para impedir novas gerações
-
       document.getElementById("btnLiberar").disabled = true;
 
     }
-
-    // (Opcional) Ao carregar a página, se já houver um código salvo, exibe-o.
 
     window.onload = function() {
 
@@ -271,27 +223,49 @@
 
       }
 
-    }
+      // Detecta se é celular
 
-    // Redireciona para o link de vídeo completo conforme o dispositivo
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-    function redirecionarVideo() {
+      const videoContainer = document.getElementById("video-container");
 
-      // Detecta se é um dispositivo móvel
-
-      const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+      let iframe;
 
       if (isMobile) {
 
-        window.open("https://youtube.com/shorts/zeZJveV5gmY?si=HNBXDgz2Chodfb6c", "_blank");
+        // YouTube Shorts para celular
+
+        iframe = document.createElement("iframe");
+iframe.id = "bgvideo";
+
+        iframe.src = "https://www.youtube.com/embed/zeZJveV5gmY?autoplay=1&mute=1&loop=1&controls=0&playsinline=1&modestbranding=1&playlist=zeZJveV5gmY";
+
+        iframe.frameBorder = "0";
+
+        iframe.allow = "autoplay; fullscreen";
+
+        iframe.allowFullscreen = true;
 
       } else {
 
-        window.open("https://vimeo.com/591754322", "_blank");
+        // Vimeo para desktop
+
+        iframe = document.createElement("iframe");
+iframe.id = "bgvideo";
+
+        iframe.src = "https://player.vimeo.com/video/591754322?autoplay=1&muted=1&loop=1&background=1";
+
+        iframe.frameBorder = "0";
+
+        iframe.allow = "autoplay; fullscreen; picture-in-picture";
+
+        iframe.allowFullscreen = true;
 
       }
+
+      videoContainer.appendChild(iframe);
 
     }
 </script>
 </body>
-</html>
+</html> 
