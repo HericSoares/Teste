@@ -5,7 +5,7 @@
 <title>Conteúdo Exclusivo</title>
 <style>
 
-    /* Estilização para o iframe do Vimeo em background */
+    /* Vídeo de fundo cobrindo toda a tela */
 
     #bgvideo {
 
@@ -15,23 +15,29 @@
 
       left: 0;
 
+      width: 100vw;
+
+      height: 100vh;
+
+      z-index: -1;
+
+      pointer-events: none;
+
+    }
+
+    body, html {
+
+      margin: 0;
+
+      padding: 0;
+
       width: 100%;
 
       height: 100%;
 
-      z-index: -1;
-
-      pointer-events: none; /* evita que o clique passe pro vídeo */
-
-    }
-
-    body {
-
-      margin: 0;
+      overflow: hidden;
 
       font-family: Arial, sans-serif;
-
-      text-align: center;
 
       color: #fff;
 
@@ -39,19 +45,23 @@
 
     .content-wrapper {
 
-      position: relative;
+      position: absolute;
 
       top: 50%;
 
-      transform: translateY(-50%);
+      left: 50%;
+
+      transform: translate(-50%, -50%);
 
       background: rgba(0, 0, 0, 0.6);
 
-      display: inline-block;
-
-      padding: 30px;
+      padding: 30px 40px;
 
       border-radius: 8px;
+
+      text-align: center;
+
+      z-index: 1;
 
     }
 
