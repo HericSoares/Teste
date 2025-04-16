@@ -1,41 +1,112 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <title>Siga para desbloquear</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-        }
-        #conteudo {
-            display: none;
-            margin-top: 30px;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Seguir no Instagram</title>
+<style>
+
+    body {
+
+      font-family: Arial, sans-serif;
+
+      text-align: center;
+
+      padding-top: 80px;
+
+      background-color: #f1f1f1;
+
+    }
+
+    h1 {
+
+      color: #333;
+
+    }
+
+    .btn {
+
+      padding: 15px 30px;
+
+      font-size: 18px;
+
+      border: none;
+
+      border-radius: 5px;
+
+      cursor: pointer;
+
+      margin: 10px;
+
+    }
+
+    .btn-instagram {
+
+      background-color: #E1306C;
+
+      color: white;
+
+    }
+
+    .btn-instagram:hover {
+
+      background-color: #C72E63;
+
+    }
+
+    .btn-liberar {
+
+      background-color: #4CAF50;
+
+      color: white;
+
+    }
+
+    .btn-liberar:disabled {
+
+      background-color: #aaa;
+
+      cursor: not-allowed;
+
+    }
+
+    #conteudo {
+
+      display: none;
+
+      margin-top: 30px;
+
+    }
+</style>
 </head>
 <body>
-    <h1>Conteúdo Exclusivo</h1>
-    <p>Siga nosso Instagram para desbloquear o link especial!</p>
-    <a href="https://instagram.com/fanucsouthamerica" target="_blank">
-        <button>Seguir no Instagram</button>
-    </a>
-    <br><br>
-    <button onclick="mostrarConteudo()">Já Segui, Mostrar Link</button>
-    <div id="conteudo">
-        <h2>Aqui está seu conteúdo</h2>
-        <a href="https://seulinkespecial.com" target="_blank">Acessar agora</a>
-    </div>
-    <script>
-        function mostrarConteudo() {
-            document.getElementById("conteudo").style.display = "block";
-        }
-    </script>
+<h1>Conteúdo Exclusivo</h1>
+<p>Siga nosso Instagram para liberar o conteúdo:</p>
+<a class="btn btn-instagram" href="https://instagram.com/fanucsouthamerica" target="_blank" onclick="habilitarBotao()">
+
+    Seguir @fanucsouthamerica
+</a>
+<br>
+<button id="btnLiberar" class="btn btn-liberar" disabled onclick="mostrarConteudo()">
+
+    Já segui, mostrar conteúdo
+</button>
+<div id="conteudo">
+<h2>Aqui está o conteúdo secreto:</h2>
+<a href="https://seulinkexclusivo.com" target="_blank">Acessar agora</a>
+</div>
+<script>
+
+    function habilitarBotao() {
+
+      document.getElementById("btnLiberar").disabled = false;
+
+    }
+
+    function mostrarConteudo() {
+
+      document.getElementById("conteudo").style.display = "block";
+
+    }
+</script>
 </body>
-</html>
+</html> 
