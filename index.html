@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Siga para desbloquear</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        #conteudo {
+            display: none;
+            margin-top: 30px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Conteúdo Exclusivo</h1>
+    <p>Siga nosso Instagram para desbloquear o link especial!</p>
+    <a href="https://instagram.com/seuusuario" target="_blank">
+        <button>Seguir no Instagram</button>
+    </a>
+    <br><br>
+    <button onclick="mostrarConteudo()">Já Segui, Mostrar Link</button>
+    <div id="conteudo">
+        <h2>Aqui está seu conteúdo</h2>
+        <a href="https://seulinkespecial.com" target="_blank">Acessar agora</a>
+    </div>
+    <script>
+        function mostrarConteudo() {
+            document.getElementById("conteudo").style.display = "block";
+        }
+    </script>
+</body>
+</html>
