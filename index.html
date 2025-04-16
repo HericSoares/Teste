@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Conteúdo Exclusivo</title>
   <style>
-    /* Garante que o iframe de fundo preencha toda a viewport */
+    /* Faz o iframe do YouTube preencher toda a tela */
     #bgvideo {
       position: fixed;
       top: 0;
@@ -13,10 +13,9 @@
       width: 100vw;
       height: 100vh;
       z-index: -1;
-      pointer-events: none; /* impede que cliques sejam captados pelo vídeo */
+      pointer-events: none;
     }
 
-    /* Redefine margens e altura para corpo e html */
     html, body {
       margin: 0;
       padding: 0;
@@ -27,7 +26,6 @@
       overflow: hidden;
     }
 
-    /* Centraliza o conteúdo absoluto */
     .content-wrapper {
       position: absolute;
       top: 50%;
@@ -89,13 +87,13 @@
 </head>
 <body>
 
-  <!-- Vimeo em background -->
+  <!-- Embed do vídeo do YouTube como fundo -->
+  <!-- O vídeo é reproduzido automaticamente, em loop (playlist com o mesmo vídeo ID), sem controles e mudo -->
   <iframe
     id="bgvideo"
-    src="https://player.vimeo.com/video/591754322?background=1&autoplay=1&loop=1&muted=1"
+    src="https://www.youtube.com/embed/zeZJveV5gmY?autoplay=1&mute=1&loop=1&controls=0&modestbranding=1&playlist=zeZJveV5gmY"
     frameborder="0"
-    webkitallowfullscreen
-    mozallowfullscreen
+    allow="autoplay; fullscreen"
     allowfullscreen>
   </iframe>
 
@@ -121,11 +119,7 @@
 
     <br>
 
-    <button
-      id="btnLiberar"
-      class="btn btn-liberar"
-      disabled
-      onclick="gerarCodigo()">
+    <button id="btnLiberar" class="btn btn-liberar" disabled onclick="gerarCodigo()">
       Já segui, mostrar código
     </button>
 
@@ -136,14 +130,14 @@
   </div>
 
   <script>
-    // Habilita o botão "Já segui" ao clicar em qualquer rede social
+    // Habilita o botão "Já segui" quando clicar em qualquer uma das redes sociais
     function habilitarBotao() {
       document.getElementById("btnLiberar").disabled = false;
     }
 
-    // Gera um número aleatório de 4 dígitos e exibe na tela
+    // Gera um número aleatório de 4 dígitos e exibe o resultado
     function gerarCodigo() {
-      const codigo = Math.floor(Math.random() * 9000) + 1000; // gera número entre 1000 e 9999
+      const codigo = Math.floor(Math.random() * 9000) + 1000; // Número entre 1000 e 9999
       document.getElementById("codigoSecreto").innerText = codigo;
       document.getElementById("conteudo").style.display = "block";
     }
