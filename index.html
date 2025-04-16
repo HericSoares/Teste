@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Seguir no Instagram</title>
+<title>Conteúdo Exclusivo</title>
 <style>
 
     body {
@@ -17,7 +17,7 @@
 
     }
 
-    h1 {
+    h1, h2, p {
 
       color: #333;
 
@@ -44,6 +44,8 @@
       background-color: #E1306C;
 
       color: white;
+
+      text-decoration: none;
 
     }
 
@@ -86,15 +88,17 @@
     Seguir @fanucsouthamerica
 </a>
 <br>
-<button id="btnLiberar" class="btn btn-liberar" disabled onclick="mostrarConteudo()">
+<button id="btnLiberar" class="btn btn-liberar" disabled onclick="gerarCodigo()">
 
-    Já segui, mostrar conteúdo
+    Já segui, mostrar código
 </button>
 <div id="conteudo">
-<h2>Aqui está o conteúdo secreto:</h2>
-<a href="https://seulinkexclusivo.com" target="_blank">Acessar agora</a>
+<h2>Aqui está o seu código secreto:</h2>
+<p id="codigoSecreto"></p>
 </div>
 <script>
+
+    // Habilita o botão "Já segui" após o clique no botão do Instagram
 
     function habilitarBotao() {
 
@@ -102,7 +106,13 @@
 
     }
 
-    function mostrarConteudo() {
+    // Gera um número aleatório de 4 dígitos e exibe na tela
+
+    function gerarCodigo() {
+
+      const codigo = Math.floor(Math.random() * 9000) + 1000; // Gera um número entre 1000 e 9999
+
+      document.getElementById("codigoSecreto").innerText = codigo;
 
       document.getElementById("conteudo").style.display = "block";
 
