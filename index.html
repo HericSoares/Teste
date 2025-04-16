@@ -88,10 +88,9 @@
 <body>
 
   <!-- Embed do vídeo do YouTube como fundo -->
-  <!-- O vídeo é reproduzido automaticamente, em loop (playlist com o mesmo vídeo ID), sem controles e mudo -->
   <iframe
     id="bgvideo"
-    src="https://www.youtube.com/embed/zeZJveV5gmY?autoplay=1&mute=1&loop=1&controls=0&modestbranding=1&playlist=zeZJveV5gmY"
+    src="https://www.youtube.com/embed/zeZJveV5gmY?autoplay=1&mute=1&loop=1&controls=0&playsinline=1&modestbranding=1&playlist=zeZJveV5gmY"
     frameborder="0"
     allow="autoplay; fullscreen"
     allowfullscreen>
@@ -101,20 +100,18 @@
     <h1>Conteúdo Exclusivo</h1>
     <p>Siga nossas redes para liberar o conteúdo:</p>
 
-    <a
-      class="btn btn-instagram"
-      href="https://instagram.com/fanucsouthamerica"
-      target="_blank"
-      onclick="habilitarBotao()">
-      Seguir @fanucsouthamerica
+    <a class="btn btn-instagram"
+       href="https://instagram.com/fanucsouthamerica"
+       target="_blank"
+       onclick="habilitarBotao()">
+       Seguir @fanucsouthamerica
     </a>
 
-    <a
-      class="btn btn-linkedin"
-      href="https://www.linkedin.com/company/fanucsouthamerica"
-      target="_blank"
-      onclick="habilitarBotao()">
-      Seguir no LinkedIn
+    <a class="btn btn-linkedin"
+       href="https://www.linkedin.com/company/fanucsouthamerica"
+       target="_blank"
+       onclick="habilitarBotao()">
+       Seguir no LinkedIn
     </a>
 
     <br>
@@ -130,16 +127,38 @@
   </div>
 
   <script>
-    // Habilita o botão "Já segui" quando clicar em qualquer uma das redes sociais
+    // Habilita o botão "Já segui" quando o usuário clica em qualquer uma das redes
     function habilitarBotao() {
       document.getElementById("btnLiberar").disabled = false;
     }
 
-    // Gera um número aleatório de 4 dígitos e exibe o resultado
+    // Gera o código ou recupera do localStorage se já foi gerado anteriormente
     function gerarCodigo() {
-      const codigo = Math.floor(Math.random() * 9000) + 1000; // Número entre 1000 e 9999
-      document.getElementById("codigoSecreto").innerText = codigo;
+      // Verifica se já existe um código salvo no dispositivo
+      let codigoSalvo = localStorage.getItem("codigoSecreto");
+      
+      if (!codigoSalvo) {
+        // Se não houver, gera um código aleatório entre 1000 e 9999
+        codigoSalvo = Math.floor(Math.random() * 9000) + 1000;
+        localStorage.setItem("codigoSecreto", codigoSalvo);
+      }
+
+      // Exibe o código na tela
+      document.getElementById("codigoSecreto").innerText = codigoSalvo;
       document.getElementById("conteudo").style.display = "block";
+      
+      // Desabilita o botão para impedir novas gerações
+      document.getElementById("btnLiberar").disabled = true;
+    }
+
+    // (Opcional) Verifica ao carregar a página se já existe um código e já exibe o conteúdo.
+    window.onload = function() {
+      let codigoSalvo = localStorage.getItem("codigoSecreto");
+      if (codigoSalvo) {
+        document.getElementById("codigoSecreto").innerText = codigoSalvo;
+        document.getElementById("conteudo").style.display = "block";
+        document.getElementById("btnLiberar").disabled = true;
+      }
     }
   </script>
 
