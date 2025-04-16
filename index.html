@@ -1,166 +1,297 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Conteúdo Exclusivo</title>
-  <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conteúdo Exclusivo</title>
+<style>
+
     /* Faz o iframe do YouTube preencher toda a tela */
+
     #bgvideo {
+
       position: fixed;
+
       top: 0;
+
       left: 0;
+
       width: 100vw;
+
       height: 100vh;
+
       z-index: -1;
+
       pointer-events: none;
+
     }
 
     html, body {
+
       margin: 0;
+
       padding: 0;
+
       width: 100%;
+
       height: 100%;
+
       font-family: Arial, sans-serif;
+
       color: #fff;
+
       overflow: hidden;
+
     }
 
     .content-wrapper {
+
       position: absolute;
+
       top: 50%;
+
       left: 50%;
+
       transform: translate(-50%, -50%);
+
       background: rgba(0, 0, 0, 0.6);
+
       padding: 30px 40px;
+
       border-radius: 8px;
+
       text-align: center;
+
       z-index: 1;
+
       max-width: 90%;
+
     }
 
     h1, h2, p {
+
       margin: 10px 0;
+
     }
 
     .btn {
+
       display: inline-block;
+
       padding: 15px 30px;
+
       font-size: 18px;
+
       border: none;
+
       border-radius: 5px;
+
       cursor: pointer;
+
       margin: 10px;
+
       text-decoration: none;
+
     }
 
     .btn-instagram {
+
       background-color: #E1306C;
+
       color: white;
+
     }
+
     .btn-instagram:hover {
+
       background-color: #C72E63;
+
     }
 
     .btn-linkedin {
+
       background-color: #0077B5;
+
       color: white;
+
     }
+
     .btn-linkedin:hover {
+
       background-color: #005983;
+
     }
 
     .btn-liberar {
+
       background-color: #4CAF50;
+
       color: white;
+
     }
+
     .btn-liberar:disabled {
+
       background-color: #aaa;
+
       cursor: not-allowed;
+
+    }
+
+    /* Novo estilo para o botão de Vídeo Completo */
+
+    .btn-video {
+
+      background-color: #FF0000;
+
+      color: white;
+
+    }
+
+    .btn-video:hover {
+
+      background-color: #cc0000;
+
     }
 
     #conteudo {
+
       display: none;
+
       margin-top: 20px;
+
     }
-  </style>
+</style>
 </head>
 <body>
+<!-- Embed do vídeo do YouTube como fundo -->
+<iframe
 
-  <!-- Embed do vídeo do YouTube como fundo -->
-  <iframe
     id="bgvideo"
+
     src="https://www.youtube.com/embed/zeZJveV5gmY?autoplay=1&mute=1&loop=1&controls=0&playsinline=1&modestbranding=1&playlist=zeZJveV5gmY"
+
     frameborder="0"
+
     allow="autoplay; fullscreen"
+
     allowfullscreen>
-  </iframe>
+</iframe>
+<div class="content-wrapper">
+<h1>Conteúdo Exclusivo</h1>
+<p>Siga nossas redes para liberar o conteúdo:</p>
+<a class="btn btn-instagram"
 
-  <div class="content-wrapper">
-    <h1>Conteúdo Exclusivo</h1>
-    <p>Siga nossas redes para liberar o conteúdo:</p>
-
-    <a class="btn btn-instagram"
        href="https://instagram.com/fanucsouthamerica"
+
        target="_blank"
+
        onclick="habilitarBotao()">
+
        Seguir @fanucsouthamerica
-    </a>
+</a>
+<a class="btn btn-linkedin"
 
-    <a class="btn btn-linkedin"
-       href="https://www.linkedin.com/company/fanuc-south-america?trk=blended-typeahead"
+       href="https://www.linkedin.com/company/fanucsouthamerica"
+
        target="_blank"
+
        onclick="habilitarBotao()">
+
        Seguir no LinkedIn
-    </a>
+</a>
+<br>
+<button id="btnLiberar" class="btn btn-liberar" disabled onclick="gerarCodigo()">
 
-    <br>
-
-    <button id="btnLiberar" class="btn btn-liberar" disabled onclick="gerarCodigo()">
       Já segui, mostrar código
-    </button>
+</button>
+<div id="conteudo">
+<h2>Aqui está o seu código secreto:</h2>
+<p id="codigoSecreto" style="font-size: 24px; font-weight: bold;"></p>
+</div>
+<!-- Novo botão para ver o vídeo completo com redirecionamento condicional -->
+<button id="btnVideoCompleto" class="btn btn-video" onclick="redirecionarVideo()">
 
-    <div id="conteudo">
-      <h2>Aqui está o seu código secreto:</h2>
-      <p id="codigoSecreto" style="font-size: 24px; font-weight: bold;"></p>
-    </div>
-  </div>
+      Ver Vídeo Completo
+</button>
+</div>
+<script>
 
-  <script>
     // Habilita o botão "Já segui" quando o usuário clica em qualquer uma das redes
+
     function habilitarBotao() {
+
       document.getElementById("btnLiberar").disabled = false;
+
     }
 
     // Gera o código ou recupera do localStorage se já foi gerado anteriormente
+
     function gerarCodigo() {
+
       // Verifica se já existe um código salvo no dispositivo
+
       let codigoSalvo = localStorage.getItem("codigoSecreto");
-      
+
       if (!codigoSalvo) {
+
         // Se não houver, gera um código aleatório entre 1000 e 9999
+
         codigoSalvo = Math.floor(Math.random() * 9000) + 1000;
+
         localStorage.setItem("codigoSecreto", codigoSalvo);
+
       }
 
       // Exibe o código na tela
+
       document.getElementById("codigoSecreto").innerText = codigoSalvo;
+
       document.getElementById("conteudo").style.display = "block";
-      
+
       // Desabilita o botão para impedir novas gerações
+
       document.getElementById("btnLiberar").disabled = true;
+
     }
 
-    // (Opcional) Verifica ao carregar a página se já existe um código e já exibe o conteúdo.
+    // (Opcional) Ao carregar a página, se já houver um código salvo, exibe-o.
+
     window.onload = function() {
-      let codigoSalvo = localStorage.getItem("codigoSecreto");
-      if (codigoSalvo) {
-        document.getElementById("codigoSecreto").innerText = codigoSalvo;
-        document.getElementById("conteudo").style.display = "block";
-        document.getElementById("btnLiberar").disabled = true;
-      }
-    }
-  </script>
 
+      let codigoSalvo = localStorage.getItem("codigoSecreto");
+
+      if (codigoSalvo) {
+
+        document.getElementById("codigoSecreto").innerText = codigoSalvo;
+
+        document.getElementById("conteudo").style.display = "block";
+
+        document.getElementById("btnLiberar").disabled = true;
+
+      }
+
+    }
+
+    // Redireciona para o link de vídeo completo conforme o dispositivo
+
+    function redirecionarVideo() {
+
+      // Detecta se é um dispositivo móvel
+
+      const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+
+      if (isMobile) {
+
+        window.open("https://youtube.com/shorts/zeZJveV5gmY?si=HNBXDgz2Chodfb6c", "_blank");
+
+      } else {
+
+        window.open("https://vimeo.com/591754322", "_blank");
+
+      }
+
+    }
+</script>
 </body>
 </html>
