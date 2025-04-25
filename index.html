@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conteúdo Exclusivo</title>
     <style>
-        /* Estilo do vídeo de fundo */
-        #bgvideo-desktop,
-        #bgvideo-mobile {
+        /* Estilo geral do vídeo de fundo */
+        #bgvideo {
             position: fixed;
             top: 0;
             left: 0;
@@ -19,25 +18,11 @@
             background: #000; /* Fundo preto caso o vídeo não carregue */
         }
 
-        /* Ajustes para dispositivos móveis */
+        /* Ajustes para dispositivos móveis (proporção 9:16 para Shorts) */
         @media (max-width: 768px) {
-            #bgvideo-mobile {
-                display: block;
-            }
-
-            #bgvideo-desktop {
-                display: none;
-            }
-        }
-
-        /* Ajustes para desktop */
-        @media (min-width: 769px) {
-            #bgvideo-desktop {
-                display: block;
-            }
-
-            #bgvideo-mobile {
-                display: none;
+            #bgvideo {
+                object-fit: cover;
+                aspect-ratio: 9 / 16; /* Proporção de Shorts */
             }
         }
 
@@ -120,15 +105,9 @@
     </style>
 </head>
 <body>
-<!-- Vídeo de fundo para desktop -->
-<video id="bgvideo-desktop" autoplay muted loop preload="auto">
+<!-- Vídeo de fundo (mesmo vídeo para desktop e dispositivos móveis) -->
+<video id="bgvideo" autoplay muted loop preload="auto">
     <source src="videos/desktop.mp4" type="video/mp4">
-    Seu navegador não suporta a reprodução de vídeos.
-</video>
-
-<!-- Vídeo de fundo para dispositivos móveis -->
-<video id="bgvideo-mobile" autoplay muted loop preload="auto" poster="videos/placeholder.jpg">
-    <source src="videos/celular.mp4" type="video/mp4">
     Seu navegador não suporta a reprodução de vídeos.
 </video>
 
