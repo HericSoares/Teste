@@ -8,22 +8,24 @@
         /* Estilo geral do vídeo de fundo */
         #bgvideo {
             position: fixed;
-            top: 0;
-            left: 0;
+            top: 50%;
+            left: 50%;
             width: 100vw;
             height: 100vh;
+            transform: translate(-50%, -50%);
             z-index: -1; /* Coloca o vídeo atrás de todo o conteúdo */
             object-fit: cover; /* Preenche a tela sem distorção */
             pointer-events: none; /* Impede que o vídeo bloqueie interações */
             background: #000; /* Fundo preto caso o vídeo não carregue */
         }
 
-        /* Ajustes para dispositivos móveis (proporção 9:16 para Shorts) */
+        /* Ajustes específicos para dispositivos móveis */
         @media (max-width: 768px) {
             #bgvideo {
                 object-fit: cover;
-                width: 100vw;
-                height: 100vh;
+                width: 100vh; /* Inverte a largura e altura para respeitar a proporção 9:16 */
+                height: 100vw;
+                transform: translate(-50%, -50%) rotate(90deg); /* Rotaciona o vídeo para a proporção correta */
             }
         }
 
