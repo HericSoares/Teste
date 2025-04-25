@@ -6,7 +6,7 @@
     <title>Conteúdo Exclusivo</title>
     <style>
         /* Estilo do vídeo de fundo */
-        #bgvideo-desktop iframe,
+        #bgvideo-desktop,
         #bgvideo-mobile {
             position: fixed;
             top: 0;
@@ -16,6 +16,7 @@
             z-index: -1; /* Coloca o vídeo atrás de todo o conteúdo */
             object-fit: cover; /* Preenche a tela sem distorção */
             pointer-events: none; /* Impede que o vídeo bloqueie interações */
+            background: #000; /* Fundo preto caso o vídeo não carregue */
         }
 
         /* Ajustes para dispositivos móveis */
@@ -40,7 +41,6 @@
             }
         }
 
-        /* Configuração da página */
         html, body {
             margin: 0;
             padding: 0;
@@ -120,17 +120,14 @@
     </style>
 </head>
 <body>
-<!-- Vídeo de fundo para desktop (Vimeo) -->
-<div id="bgvideo-desktop">
-    <iframe src="https://player.vimeo.com/video/591754322?autoplay=1&muted=1&loop=1&background=1" 
-            frameborder="0" 
-            allow="autoplay; fullscreen; picture-in-picture" 
-            allowfullscreen>
-    </iframe>
-</div>
+<!-- Vídeo de fundo para desktop -->
+<video id="bgvideo-desktop" autoplay muted loop preload="auto">
+    <source src="videos/desktop.mp4" type="video/mp4">
+    Seu navegador não suporta a reprodução de vídeos.
+</video>
 
-<!-- Vídeo de fundo para dispositivos móveis (local) -->
-<video id="bgvideo-mobile" autoplay muted loop>
+<!-- Vídeo de fundo para dispositivos móveis -->
+<video id="bgvideo-mobile" autoplay muted loop preload="auto" poster="videos/placeholder.jpg">
     <source src="videos/MicrosoftTeams-video.mp4" type="video/mp4">
     Seu navegador não suporta a reprodução de vídeos.
 </video>
@@ -159,35 +156,30 @@
     </div>
 </div>
 <script>
-    // Habilita o botão de liberar código
     function habilitarBotao() {
         const botao = document.getElementById("btnLiberar");
         botao.disabled = false;
         botao.style.cursor = "pointer";
     }
 
-    // Gera um código secreto e salva no localStorage
     function gerarCodigo() {
         const conteudo = document.getElementById("conteudo");
         const codigoSecreto = document.getElementById("codigoSecreto");
 
         let codigoSalvo = localStorage.getItem("codigoSecreto");
         if (!codigoSalvo) {
-            codigoSalvo = Math.floor(Math.random() * 9000) + 1000; // Gera um número entre 1000 e 9999
+            codigoSalvo = Math.floor(Math.random() * 9000) + 1000;
             localStorage.setItem("codigoSecreto", codigoSalvo);
         }
         codigoSecreto.innerText = codigoSalvo;
         conteudo.style.display = "block";
 
-        // Desabilita o botão após gerar o código
         const botao = document.getElementById("btnLiberar");
         botao.disabled = true;
         botao.style.cursor = "not-allowed";
     }
 
-    // Carrega o vídeo de fundo e verifica códigos salvos
     window.onload = function() {
-        // Verifica se existe código salvo no localStorage
         const codigoSalvo = localStorage.getItem("codigoSecreto");
         if (codigoSalvo) {
             document.getElementById("codigoSecreto").innerText = codigoSalvo;
