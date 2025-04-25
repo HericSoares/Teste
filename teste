@@ -1,152 +1,135 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Conteúdo Exclusivo</title>
-<style>
- #bgvideo {
-   position: fixed;
-   z-index: -1;
-   pointer-events: none;
-   border: none;
- }
- html, body {
-   margin: 0;
-   padding: 0;
-   width: 100%;
-   height: 100%;
-   font-family: Arial, sans-serif;
-   color: #fff;
-   overflow: hidden;
- }
- .content-wrapper {
-   position: absolute;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
-   background: rgba(0, 0, 0, 0.6);
-   padding: 30px 40px;
-   border-radius: 8px;
-   text-align: center;
-   z-index: 1;
-   max-width: 90%;
- }
- h1, h2, p {
-   margin: 10px 0;
- }
- .btn {
-   display: inline-block;
-   padding: 15px 30px;
-   font-size: 18px;
-   border: none;
-   border-radius: 5px;
-   cursor: pointer;
-   margin: 10px;
-   text-decoration: none;
- }
- .btn-instagram {
-   background-color: #E1306C;
-   color: white;
- }
- .btn-instagram:hover {
-   background-color: #C72E63;
- }
- .btn-linkedin {
-   background-color: #0077B5;
-   color: white;
- }
- .btn-linkedin:hover {
-   background-color: #005983;
- }
- .btn-liberar {
-   background-color: #4CAF50;
-   color: white;
- }
- .btn-liberar:disabled {
-   background-color: #aaa;
-   cursor: not-allowed;
- }
- #conteudo {
-   display: none;
-   margin-top: 20px;
- }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conteúdo Exclusivo</title>
+    <style>
+        #bgvideo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            overflow: hidden;
+        }
+        .content-wrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.6);
+            padding: 30px 40px;
+            border-radius: 8px;
+            text-align: center;
+            z-index: 1;
+            max-width: 90%;
+        }
+        h1, h2, p {
+            margin: 10px 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            text-decoration: none;
+        }
+        .btn-instagram {
+            background-color: #E1306C;
+            color: white;
+        }
+        .btn-instagram:hover {
+            background-color: #C72E63;
+        }
+        .btn-linkedin {
+            background-color: #0077B5;
+            color: white;
+        }
+        .btn-linkedin:hover {
+            background-color: #005983;
+        }
+        .btn-liberar {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .btn-liberar:disabled {
+            background-color: #aaa;
+            cursor: not-allowed;
+        }
+        #conteudo {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
 <!-- Container para o vídeo de fundo -->
 <div id="video-container"></div>
 <div class="content-wrapper">
-<h1>Conteúdo Exclusivo</h1>
-<p>Siga nossas redes para liberar o código:</p>
-<a class="btn btn-instagram"
-    href="https://instagram.com/fanucsouthamerica"
-    target="_blank"
-    onclick="habilitarBotao()">
-    Seguir @fanucsouthamerica
-</a>
-<a class="btn btn-linkedin"
-    href="https://www.linkedin.com/company/fanuc-south-america/"
-    target="_blank"
-    onclick="habilitarBotao()">
-    Seguir no LinkedIn
-</a>
-<br>
-<button id="btnLiberar" class="btn btn-liberar" disabled onclick="gerarCodigo()">
-   Já segui, mostrar código
-</button>
-<div id="conteudo">
-<h2>Aqui está o seu código secreto:</h2>
-<p id="codigoSecreto" style="font-size: 24px; font-weight: bold;"></p>
-</div>
+    <h1>Conteúdo Exclusivo</h1>
+    <p>Siga nossas redes para liberar o código:</p>
+    <a class="btn btn-instagram" href="https://instagram.com/fanucsouthamerica" target="_blank" onclick="habilitarBotao()">
+        Seguir @fanucsouthamerica
+    </a>
+    <a class="btn btn-linkedin" href="https://www.linkedin.com/company/fanuc-south-america/" target="_blank" onclick="habilitarBotao()">
+        Seguir no LinkedIn
+    </a>
+    <br>
+    <button id="btnLiberar" class="btn btn-liberar" disabled onclick="gerarCodigo()">
+        Já segui, mostrar código
+    </button>
+    <div id="conteudo">
+        <h2>Aqui está o seu código secreto:</h2>
+        <p id="codigoSecreto" style="font-size: 24px; font-weight: bold;"></p>
+    </div>
 </div>
 <script>
- function habilitarBotao() {
-   document.getElementById("btnLiberar").disabled = false;
- }
- function gerarCodigo() {
-   let codigoSalvo = localStorage.getItem("codigoSecreto");
-   if (!codigoSalvo) {
-     codigoSalvo = Math.floor(Math.random() * 9000) + 1000;
-     localStorage.setItem("codigoSecreto", codigoSalvo);
-   }
-   document.getElementById("codigoSecreto").innerText = codigoSalvo;
-   document.getElementById("conteudo").style.display = "block";
-   document.getElementById("btnLiberar").disabled = true;
- }
- window.onload = function () {
-   let codigoSalvo = localStorage.getItem("codigoSecreto");
-   if (codigoSalvo) {
-     document.getElementById("codigoSecreto").innerText = codigoSalvo;
-     document.getElementById("conteudo").style.display = "block";
-     document.getElementById("btnLiberar").disabled = true;
-   }
-   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-   const videoContainer = document.getElementById("video-container");
-   const iframe = document.createElement("iframe");
-iframe.id = "bgvideo";
-   iframe.src = "https://player.vimeo.com/video/591754322?autoplay=1&muted=1&loop=1&background=1";
-   iframe.allow = "autoplay; fullscreen; picture-in-picture";
-   iframe.allowFullscreen = true;
-   iframe.frameBorder = "0";
-   if (isMobile) {
-     // Vertical 9:16 para mobile
-     iframe.style.width = "100vw";
-     iframe.style.height = "177.77vw"; // Altura proporcional para 9:16
-     iframe.style.position = "fixed";
-     iframe.style.top = "50%";
-     iframe.style.left = "50%";
-     iframe.style.transform = "translate(-50%, -50%)";
-   } else {
-     // Tela cheia para desktop
-     iframe.style.width = "100vw";
-     iframe.style.height = "100vh";
-     iframe.style.position = "fixed";
-     iframe.style.top = "0";
-     iframe.style.left = "0";
-   }
-   videoContainer.appendChild(iframe);
- }
+    function habilitarBotao() {
+        document.getElementById("btnLiberar").disabled = false;
+    }
+
+    function gerarCodigo() {
+        let codigoSalvo = localStorage.getItem("codigoSecreto");
+        if (!codigoSalvo) {
+            codigoSalvo = Math.floor(Math.random() * 9000) + 1000;
+            localStorage.setItem("codigoSecreto", codigoSalvo);
+        }
+        document.getElementById("codigoSecreto").innerText = codigoSalvo;
+        document.getElementById("conteudo").style.display = "block";
+        document.getElementById("btnLiberar").disabled = true;
+    }
+
+    window.onload = function() {
+        let codigoSalvo = localStorage.getItem("codigoSecreto");
+        if (codigoSalvo) {
+            document.getElementById("codigoSecreto").innerText = codigoSalvo;
+            document.getElementById("conteudo").style.display = "block";
+            document.getElementById("btnLiberar").disabled = true;
+        }
+
+        const videoContainer = document.getElementById("video-container");
+        const iframe = document.createElement("iframe");
+        iframe.id = "bgvideo";
+        iframe.src = "https://player.vimeo.com/video/591754322?autoplay=1&muted=1&loop=1&background=1";
+        iframe.frameBorder = "0";
+        iframe.allow = "autoplay; fullscreen; picture-in-picture";
+        iframe.allowFullscreen = true;
+        videoContainer.appendChild(iframe);
+    }
 </script>
 </body>
 </html>
