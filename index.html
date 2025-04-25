@@ -39,16 +39,17 @@
             z-index: -1; /* Coloca a imagem na frente do vídeo mas atrás do conteúdo */
         }
 
-        /* Ajuste para desktop: reduz a altura da imagem em 20% */
+        /* Ajuste para desktop: aumenta a largura e desloca para baixo */
         @media screen and (min-width: 1024px) {
             #central-image {
-                max-height: 120%; /* Reduz a altura da imagem em 20% */
+                max-width: 180%; /* Aumenta a largura em 20% */
+                top: 55%; /* Desloca 5% para baixo */
             }
         }
 
         .content-wrapper {
             position: absolute;
-            top: 50%; /* Ajustado de 60% para 50% para mover para cima */
+            top: 50%; /* Ajustado para centralizar melhor o conteúdo */
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
