@@ -39,18 +39,11 @@
             z-index: -1; /* Coloca a imagem na frente do vídeo mas atrás do conteúdo */
         }
 
-        /* Ajuste para desktop: reduz o tamanho em 4% */
-        @media screen and (min-width: 1024px) {
-            #central-image {
-                max-width: 144%; /* Reduz o tamanho em 4% */
-                max-height: 144%; /* Reduz o tamanho em 4% */
-            }
-        }
-
+        /* Wrapper para manter os elementos dentro da imagem "TP" */
         .content-wrapper {
             position: absolute;
-            top: 50%; /* Ajustado para centralizar melhor o conteúdo */
-            left: 50%;
+            top: 50%; /* Centraliza verticalmente dentro da imagem */
+            left: 50%; /* Centraliza horizontalmente dentro da imagem */
             transform: translate(-50%, -50%);
             text-align: center;
             z-index: 1; /* Garante que o conteúdo fique acima da imagem */
@@ -128,7 +121,7 @@
 <!-- Imagem centralizada -->
 <img id="central-image" src="videos/TP.png" alt="Imagem Central">
 
-<!-- Botões e textos centralizados -->
+<!-- Botões e textos centralizados dentro da imagem -->
 <div class="content-wrapper">
     <h1>Conteúdo Exclusivo</h1>
     <p>Siga nossas redes para liberar o código:</p>
