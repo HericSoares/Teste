@@ -53,14 +53,16 @@
         }
 
         .btn {
-            display: inline-block;
+            display: block; /* Botões em coluna (linha única) */
             padding: 10px 20px; /* Botões menores */
             font-size: 14px; /* Texto menor */
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin: 5px; /* Espaçamento reduzido */
+            margin: 10px auto; /* Espaçamento entre os botões */
             text-decoration: none;
+            color: white; /* Texto branco */
+            width: 200px; /* Largura fixa para os botões */
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
@@ -70,7 +72,6 @@
 
         .btn-instagram {
             background-color: #E1306C;
-            color: white;
         }
 
         .btn-instagram:hover {
@@ -79,7 +80,6 @@
 
         .btn-linkedin {
             background-color: #0077B5;
-            color: white;
         }
 
         .btn-linkedin:hover {
@@ -88,7 +88,6 @@
 
         .btn-liberar {
             background-color: #4CAF50;
-            color: white;
             cursor: not-allowed;
         }
 
@@ -112,8 +111,10 @@
 <!-- Imagem centralizada -->
 <img id="central-image" src="videos/TP.png" alt="Imagem Central">
 
-<!-- Botões centralizados -->
+<!-- Botões e textos centralizados -->
 <div class="content-wrapper">
+    <h1>Conteúdo Exclusivo</h1>
+    <p>Siga nossas redes para liberar o código:</p>
     <a class="btn btn-instagram" href="https://instagram.com/fanucsouthamerica" target="_blank" 
        onclick="habilitarBotao()" 
        aria-label="Seguir Fanuc South America no Instagram">
@@ -124,7 +125,6 @@
        aria-label="Seguir Fanuc South America no LinkedIn">
         Seguir no LinkedIn
     </a>
-    <br>
     <button id="btnLiberar" class="btn btn-liberar" disabled 
             onclick="gerarCodigo()" aria-label="Mostrar código secreto">
         Já segui, mostrar código
