@@ -49,6 +49,13 @@
             z-index: 1; /* Garante que o conteúdo fique acima da imagem */
         }
 
+        /* Ajuste para celular: desloca 0.5% para baixo */
+        @media screen and (max-width: 768px) {
+            .content-wrapper {
+                top: 50.5%; /* Desloca 0.5% para baixo */
+            }
+        }
+
         h1, h2, p {
             margin: 10px 0;
             color: #FFFFFF; /* Letras brancas */
