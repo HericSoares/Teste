@@ -16,15 +16,32 @@
             transform: translate(-50%, -50%);
             z-index: -1;
             pointer-events: none;
+            object-fit: cover;
         }
 
-        /* Ajustes específicos para dispositivos móveis */
+        /* Ajustes para dispositivos móveis */
         @media (max-width: 768px) {
-            #bgvideo {
+            #bgvideo-mobile {
+                display: block;
                 aspect-ratio: 9 / 16; /* Proporção de Shorts */
                 width: 100vw;
                 height: 100vh;
-                object-fit: cover; /* Faz o vídeo preencher a tela sem distorção */
+                object-fit: cover;
+            }
+
+            #bgvideo-desktop {
+                display: none;
+            }
+        }
+
+        /* Ajustes para desktop */
+        @media (min-width: 769px) {
+            #bgvideo-desktop {
+                display: block;
+            }
+
+            #bgvideo-mobile {
+                display: none;
             }
         }
 
@@ -107,8 +124,18 @@
     </style>
 </head>
 <body>
-<!-- Container para o vídeo de fundo -->
-<div id="video-container"></div>
+<!-- Vídeo de fundo para desktop -->
+<video id="bgvideo-desktop" autoplay muted loop>
+    <source src="videos/meu-video.mp4" type="video/mp4">
+    Seu navegador não suporta a reprodução de vídeos.
+</video>
+
+<!-- Vídeo de fundo para dispositivos móveis -->
+<video id="bgvideo-mobile" autoplay muted loop>
+    <source src="videos/MicrosoftTeams-video.mp4" type="video/mp4">
+    Seu navegador não suporta a reprodução de vídeos.
+</video>
+
 <div class="content-wrapper">
     <h1>Conteúdo Exclusivo</h1>
     <p>Siga nossas redes para liberar o código:</p>
@@ -161,16 +188,6 @@
 
     // Carrega o vídeo de fundo e verifica códigos salvos
     window.onload = function() {
-        const videoContainer = document.getElementById("video-container");
-        const iframe = document.createElement("iframe");
-        iframe.id = "bgvideo";
-        iframe.src = "https://player.vimeo.com/video/591754322?autoplay=1&muted=1&loop=1&background=1";
-        iframe.frameBorder = "0";
-        iframe.allow = "autoplay; fullscreen; picture-in-picture";
-        iframe.allowFullscreen = true;
-        iframe.loading = "lazy";
-        videoContainer.appendChild(iframe);
-
         // Verifica se existe código salvo no localStorage
         const codigoSalvo = localStorage.getItem("codigoSecreto");
         if (codigoSalvo) {
