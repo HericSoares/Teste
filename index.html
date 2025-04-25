@@ -100,6 +100,8 @@
         #conteudo {
             display: none;
             margin-top: 20px;
+            color: #FFFFFF; /* Letras brancas */
+            text-shadow: 2px 2px 4px #000000; /* Sombra preta */
         }
     </style>
 </head>
@@ -134,6 +136,10 @@
             onclick="gerarCodigo()" aria-label="Mostrar código secreto">
         Já segui, mostrar código
     </button>
+    <div id="conteudo">
+        <h2>Aqui está o seu código secreto:</h2>
+        <p id="codigoSecreto" style="font-size: 24px; font-weight: bold;"></p>
+    </div>
 </div>
 
 <script>
@@ -147,17 +153,37 @@
         const conteudo = document.getElementById("conteudo");
         const codigoSecreto = document.getElementById("codigoSecreto");
 
+        // Verifica se o código já foi gerado e salvo no localStorage
         let codigoSalvo = localStorage.getItem("codigoSecreto");
         if (!codigoSalvo) {
-            codigoSalvo = Math.floor(Math.random() * 9000) + 1000;
+            // Gera um novo código secreto e salva no localStorage
+            codigoSalvo = Math.floor(Math.random() * 9000) + 1000; // Gera um número de 1000 a 9999
             localStorage.setItem("codigoSecreto", codigoSalvo);
         }
+
+        // Exibe o código secreto no elemento HTML
         codigoSecreto.innerText = codigoSalvo;
         conteudo.style.display = "block";
 
+        // Desabilita o botão novamente após mostrar o código
         const botao = document.getElementById("btnLiberar");
         botao.disabled = true;
         botao.style.cursor = "not-allowed";
+    }
+
+    // Verifica se há um código salvo no localStorage ao carregar a página
+    window.onload = function() {
+        const codigoSalvo = localStorage.getItem("codigoSecreto");
+        if (codigoSalvo) {
+            // Exibe o código salvo se já existir
+            document.getElementById("codigoSecreto").innerText = codigoSalvo;
+            document.getElementById("conteudo").style.display = "block";
+
+            // Desabilita o botão "Já segui, mostrar código"
+            const botao = document.getElementById("btnLiberar");
+            botao.disabled = true;
+            botao.style.cursor = "not-allowed";
+        }
     }
 </script>
 </body>
