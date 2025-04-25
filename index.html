@@ -7,13 +7,27 @@
     <style>
         #bgvideo {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
+            top: 50%;
+            left: 50%;
+            width: auto;
+            height: auto;
+            min-width: 100vw;
+            min-height: 100vh;
+            transform: translate(-50%, -50%);
             z-index: -1;
             pointer-events: none;
         }
+
+        /* Ajustes específicos para dispositivos móveis */
+        @media (max-width: 768px) {
+            #bgvideo {
+                aspect-ratio: 9 / 16; /* Proporção de Shorts */
+                width: 100vw;
+                height: 100vh;
+                object-fit: cover; /* Faz o vídeo preencher a tela sem distorção */
+            }
+        }
+
         html, body {
             margin: 0;
             padding: 0;
@@ -23,6 +37,7 @@
             color: #fff;
             overflow: hidden;
         }
+
         .content-wrapper {
             position: absolute;
             top: 50%;
@@ -36,9 +51,11 @@
             max-width: 90%;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
+
         h1, h2, p {
             margin: 10px 0;
         }
+
         .btn {
             display: inline-block;
             padding: 15px 30px;
@@ -50,31 +67,39 @@
             text-decoration: none;
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
+
         .btn:hover {
             transform: scale(1.05);
         }
+
         .btn-instagram {
             background-color: #E1306C;
             color: white;
         }
+
         .btn-instagram:hover {
             background-color: #C72E63;
         }
+
         .btn-linkedin {
             background-color: #0077B5;
             color: white;
         }
+
         .btn-linkedin:hover {
             background-color: #005983;
         }
+
         .btn-liberar {
             background-color: #4CAF50;
             color: white;
             cursor: not-allowed;
         }
+
         .btn-liberar:enabled {
             cursor: pointer;
         }
+
         #conteudo {
             display: none;
             margin-top: 20px;
