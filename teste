@@ -28,12 +28,13 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.8);
             padding: 30px 40px;
-            border-radius: 8px;
+            border-radius: 10px;
             text-align: center;
             z-index: 1;
             max-width: 90%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
         h1, h2, p {
             margin: 10px 0;
@@ -44,9 +45,13 @@
             font-size: 18px;
             border: none;
             border-radius: 5px;
-            cursor: pointer;
+            cursor: not-allowed;
             margin: 10px;
             text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .btn:hover {
+            transform: scale(1.05);
         }
         .btn-instagram {
             background-color: #E1306C;
@@ -65,10 +70,10 @@
         .btn-liberar {
             background-color: #4CAF50;
             color: white;
-        }
-        .btn-liberar:disabled {
-            background-color: #aaa;
             cursor: not-allowed;
+        }
+        .btn-liberar:enabled {
+            cursor: pointer;
         }
         #conteudo {
             display: none;
@@ -82,45 +87,55 @@
 <div class="content-wrapper">
     <h1>Conteúdo Exclusivo</h1>
     <p>Siga nossas redes para liberar o código:</p>
-    <a class="btn btn-instagram" href="https://instagram.com/fanucsouthamerica" target="_blank" onclick="habilitarBotao()">
+    <a class="btn btn-instagram" href="https://instagram.com/fanucsouthamerica" target="_blank" 
+       onclick="habilitarBotao()" 
+       aria-label="Seguir Fanuc South America no Instagram">
         Seguir @fanucsouthamerica
     </a>
-    <a class="btn btn-linkedin" href="https://www.linkedin.com/company/fanuc-south-america/" target="_blank" onclick="habilitarBotao()">
+    <a class="btn btn-linkedin" href="https://www.linkedin.com/company/fanuc-south-america/" target="_blank" 
+       onclick="habilitarBotao()" 
+       aria-label="Seguir Fanuc South America no LinkedIn">
         Seguir no LinkedIn
     </a>
     <br>
-    <button id="btnLiberar" class="btn btn-liberar" disabled onclick="gerarCodigo()">
+    <button id="btnLiberar" class="btn btn-liberar" disabled 
+            onclick="gerarCodigo()" aria-label="Mostrar código secreto">
         Já segui, mostrar código
     </button>
-    <div id="conteudo">
+    <div id="conteudo" role="region" aria-live="polite">
         <h2>Aqui está o seu código secreto:</h2>
         <p id="codigoSecreto" style="font-size: 24px; font-weight: bold;"></p>
     </div>
 </div>
 <script>
+    // Habilita o botão de liberar código
     function habilitarBotao() {
-        document.getElementById("btnLiberar").disabled = false;
+        const botao = document.getElementById("btnLiberar");
+        botao.disabled = false;
+        botao.style.cursor = "pointer";
     }
 
+    // Gera um código secreto e salva no localStorage
     function gerarCodigo() {
+        const conteudo = document.getElementById("conteudo");
+        const codigoSecreto = document.getElementById("codigoSecreto");
+
         let codigoSalvo = localStorage.getItem("codigoSecreto");
         if (!codigoSalvo) {
-            codigoSalvo = Math.floor(Math.random() * 9000) + 1000;
+            codigoSalvo = Math.floor(Math.random() * 9000) + 1000; // Gera um número entre 1000 e 9999
             localStorage.setItem("codigoSecreto", codigoSalvo);
         }
-        document.getElementById("codigoSecreto").innerText = codigoSalvo;
-        document.getElementById("conteudo").style.display = "block";
-        document.getElementById("btnLiberar").disabled = true;
+        codigoSecreto.innerText = codigoSalvo;
+        conteudo.style.display = "block";
+
+        // Desabilita o botão após gerar o código
+        const botao = document.getElementById("btnLiberar");
+        botao.disabled = true;
+        botao.style.cursor = "not-allowed";
     }
 
+    // Carrega o vídeo de fundo e verifica códigos salvos
     window.onload = function() {
-        let codigoSalvo = localStorage.getItem("codigoSecreto");
-        if (codigoSalvo) {
-            document.getElementById("codigoSecreto").innerText = codigoSalvo;
-            document.getElementById("conteudo").style.display = "block";
-            document.getElementById("btnLiberar").disabled = true;
-        }
-
         const videoContainer = document.getElementById("video-container");
         const iframe = document.createElement("iframe");
         iframe.id = "bgvideo";
@@ -128,7 +143,19 @@
         iframe.frameBorder = "0";
         iframe.allow = "autoplay; fullscreen; picture-in-picture";
         iframe.allowFullscreen = true;
+        iframe.loading = "lazy";
         videoContainer.appendChild(iframe);
+
+        // Verifica se existe código salvo no localStorage
+        const codigoSalvo = localStorage.getItem("codigoSecreto");
+        if (codigoSalvo) {
+            document.getElementById("codigoSecreto").innerText = codigoSalvo;
+            document.getElementById("conteudo").style.display = "block";
+
+            const botao = document.getElementById("btnLiberar");
+            botao.disabled = true;
+            botao.style.cursor = "not-allowed";
+        }
     }
 </script>
 </body>
