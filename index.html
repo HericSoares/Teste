@@ -5,28 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conteúdo Exclusivo</title>
     <style>
-        #bgvideo {
+        /* Estilo do vídeo de fundo */
+        #bgvideo-desktop iframe,
+        #bgvideo-mobile {
             position: fixed;
-            top: 50%;
-            left: 50%;
-            width: auto;
-            height: auto;
-            min-width: 100vw;
-            min-height: 100vh;
-            transform: translate(-50%, -50%);
-            z-index: -1;
-            pointer-events: none;
-            object-fit: cover;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1; /* Coloca o vídeo atrás de todo o conteúdo */
+            object-fit: cover; /* Preenche a tela sem distorção */
+            pointer-events: none; /* Impede que o vídeo bloqueie interações */
         }
 
         /* Ajustes para dispositivos móveis */
         @media (max-width: 768px) {
             #bgvideo-mobile {
                 display: block;
-                aspect-ratio: 9 / 16; /* Proporção de Shorts */
-                width: 100vw;
-                height: 100vh;
-                object-fit: cover;
             }
 
             #bgvideo-desktop {
@@ -45,6 +40,7 @@
             }
         }
 
+        /* Configuração da página */
         html, body {
             margin: 0;
             padding: 0;
@@ -126,11 +122,10 @@
 <body>
 <!-- Vídeo de fundo para desktop (Vimeo) -->
 <div id="bgvideo-desktop">
-    <iframe id="bgvideo" src="https://player.vimeo.com/video/591754322?autoplay=1&muted=1&loop=1&background=1" 
+    <iframe src="https://player.vimeo.com/video/591754322?autoplay=1&muted=1&loop=1&background=1" 
             frameborder="0" 
             allow="autoplay; fullscreen; picture-in-picture" 
-            allowfullscreen
-            style="width: 100%; height: 100%;">
+            allowfullscreen>
     </iframe>
 </div>
 
