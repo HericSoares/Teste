@@ -41,7 +41,7 @@
 
         .content-wrapper {
             position: absolute;
-            top: 60%;
+            top: 50%; /* Ajustado de 60% para 50% para mover para cima */
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
@@ -91,9 +91,11 @@
         .btn-liberar {
             background-color: #4CAF50;
             cursor: not-allowed;
+            display: none; /* Inicialmente invisível */
         }
 
-        .btn-liberar:enabled {
+        .btn-liberar.visible {
+            display: block; /* Mostra o botão quando a classe "visible" é adicionada */
             cursor: pointer;
         }
 
@@ -132,7 +134,7 @@
        aria-label="Seguir Fanuc South America no LinkedIn">
         Seguir no LinkedIn
     </a>
-    <button id="btnLiberar" class="btn btn-liberar" disabled 
+    <button id="btnLiberar" class="btn btn-liberar" 
             onclick="gerarCodigo()" aria-label="Mostrar código secreto">
         Já segui, mostrar código
     </button>
@@ -144,7 +146,9 @@
 
 <script>
     function habilitarBotao() {
+        // Torna o botão "Já segui, mostrar código" visível
         const botao = document.getElementById("btnLiberar");
+        botao.classList.add("visible");
         botao.disabled = false;
         botao.style.cursor = "pointer";
     }
@@ -179,8 +183,9 @@
             document.getElementById("codigoSecreto").innerText = codigoSalvo;
             document.getElementById("conteudo").style.display = "block";
 
-            // Desabilita o botão "Já segui, mostrar código"
+            // Torna o botão visível, mas desabilitado
             const botao = document.getElementById("btnLiberar");
+            botao.classList.add("visible");
             botao.disabled = true;
             botao.style.cursor = "not-allowed";
         }
