@@ -18,14 +18,6 @@
             background: #000; /* Fundo preto caso o vídeo não carregue */
         }
 
-        /* Ajustes para dispositivos móveis (proporção 9:16 para Shorts) */
-        @media (max-width: 768px) {
-            #bgvideo {
-                object-fit: cover;
-                aspect-ratio: 9 / 16; /* Proporção de Shorts */
-            }
-        }
-
         html, body {
             margin: 0;
             padding: 0;
@@ -105,8 +97,8 @@
     </style>
 </head>
 <body>
-<!-- Vídeo de fundo (mesmo vídeo para desktop e dispositivos móveis) -->
-<video id="bgvideo" autoplay muted loop preload="auto">
+<!-- Vídeo de fundo -->
+<video id="bgvideo" autoplay muted loop preload="auto" playsinline>
     <source src="videos/desktop.mp4" type="video/mp4">
     Seu navegador não suporta a reprodução de vídeos.
 </video>
