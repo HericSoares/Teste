@@ -41,16 +41,11 @@
 
         .content-wrapper {
             position: absolute;
-            top: 50%;
+            top: 60%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.7); /* Fundo preto translúcido para destacar o texto */
-            padding: 30px 40px;
-            border-radius: 10px;
             text-align: center;
             z-index: 1; /* Garante que o conteúdo fique acima da imagem */
-            max-width: 90%;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
 
         h1, h2, p {
@@ -59,12 +54,12 @@
 
         .btn {
             display: inline-block;
-            padding: 15px 30px;
-            font-size: 18px;
+            padding: 10px 20px; /* Botões menores */
+            font-size: 14px; /* Texto menor */
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin: 10px;
+            margin: 5px; /* Espaçamento reduzido */
             text-decoration: none;
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
@@ -117,13 +112,12 @@
 <!-- Imagem centralizada -->
 <img id="central-image" src="videos/TP.png" alt="Imagem Central">
 
+<!-- Botões centralizados -->
 <div class="content-wrapper">
-    <h1>Conteúdo Exclusivo</h1>
-    <p>Siga nossas redes para liberar o código:</p>
     <a class="btn btn-instagram" href="https://instagram.com/fanucsouthamerica" target="_blank" 
        onclick="habilitarBotao()" 
        aria-label="Seguir Fanuc South America no Instagram">
-        Seguir @fanucsouthamerica
+        Seguir no Instagram
     </a>
     <a class="btn btn-linkedin" href="https://www.linkedin.com/company/fanuc-south-america/" target="_blank" 
        onclick="habilitarBotao()" 
@@ -135,11 +129,8 @@
             onclick="gerarCodigo()" aria-label="Mostrar código secreto">
         Já segui, mostrar código
     </button>
-    <div id="conteudo" role="region" aria-live="polite">
-        <h2>Aqui está o seu código secreto:</h2>
-        <p id="codigoSecreto" style="font-size: 24px; font-weight: bold;"></p>
-    </div>
 </div>
+
 <script>
     function habilitarBotao() {
         const botao = document.getElementById("btnLiberar");
@@ -162,18 +153,6 @@
         const botao = document.getElementById("btnLiberar");
         botao.disabled = true;
         botao.style.cursor = "not-allowed";
-    }
-
-    window.onload = function() {
-        const codigoSalvo = localStorage.getItem("codigoSecreto");
-        if (codigoSalvo) {
-            document.getElementById("codigoSecreto").innerText = codigoSalvo;
-            document.getElementById("conteudo").style.display = "block";
-
-            const botao = document.getElementById("btnLiberar");
-            botao.disabled = true;
-            botao.style.cursor = "not-allowed";
-        }
     }
 </script>
 </body>
