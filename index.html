@@ -39,9 +39,16 @@
             z-index: -1; /* Coloca a imagem na frente do vídeo mas atrás do conteúdo */
         }
 
+        /* Ajuste para desktop: reduz a altura da imagem em 20% */
+        @media screen and (min-width: 1024px) {
+            #central-image {
+                max-height: 120%; /* Reduz a altura da imagem em 20% */
+            }
+        }
+
         .content-wrapper {
             position: absolute;
-            top: 52%; /* Ajustado de 60% para 50% para mover para cima */
+            top: 50%; /* Ajustado de 60% para 50% para mover para cima */
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
@@ -136,7 +143,7 @@
     </a>
     <button id="btnLiberar" class="btn btn-liberar" 
             onclick="gerarCodigo()" aria-label="Mostrar código secreto">
-        Mostrar código
+        Já segui, mostrar código
     </button>
     <div id="conteudo">
         <h2>Aqui está o seu código secreto:</h2>
